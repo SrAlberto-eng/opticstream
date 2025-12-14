@@ -1,8 +1,29 @@
 from flask import Flask, request
 from flask_restful import Api, Resource
+import json
+import os
 
 opticstream = Flask(__name__)
 api = Api(opticstream)
+
+@api.resource("/predicciones")
+class Predicciones(Resource):
+    def get(self):
+        json_path = "modelo/temp/predictions.json"
+        
+        if not os.path.exists(json_path):
+            return {"error": "No hay predicciones disponibles"}, 404
+        
+        try:
+            with open(json_path, "r") as f:
+                contenido = f.read()
+                if not contenido.strip():
+                    return {"predicciones": [], "mensaje": "Sin detecciones"}
+                predicciones = json.loads(contenido)
+        except json.JSONDecodeError:
+            return {"error": "Error al leer predicciones"}, 500
+        
+        return {"predicciones": predicciones}
 
 @api.resource("/prueba")
 class Prueba(Resource):
