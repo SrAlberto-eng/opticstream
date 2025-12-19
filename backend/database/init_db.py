@@ -1,13 +1,16 @@
-
+import os
 import mysql.connector
 from mysql.connector import Error
+from dotenv import load_dotenv
+
+load_dotenv(os.path.join(os.path.dirname(os.path.dirname(__file__)), '.env'))
 
 def crear_base_de_datos():
     try:
         conexion = mysql.connector.connect(
-            host="localhost",
-            user="root",       
-            password="ivhs2210"  
+            host=os.getenv("DB_HOST", "localhost"),
+            user=os.getenv("DB_USER"),
+            password=os.getenv("DB_PASSWORD")
         )
         
         if conexion.is_connected():

@@ -1,6 +1,3 @@
-# =========================
-# Python
-# =========================
 __pycache__/
 *.py[cod]
 *$py.class
@@ -27,6 +24,9 @@ env/
 *.engine
 *.tflite
 
+# YOLO tracker config 
+backend/modelo/*.yaml
+
 # =========================
 # Node.js / Frontend
 # =========================
@@ -38,7 +38,7 @@ yarn-error.log*
 .yarn
 
 # =========================
-# IDE / Editores
+# IDE 
 # =========================
 .vscode/
 .idea/
@@ -62,7 +62,8 @@ desktop.ini
 .env
 .env.local
 .env.*.local
-*.env
+backend/.env
+
 
 # =========================
 # Logs y temporales
@@ -88,11 +89,6 @@ temp/
 *.mov
 *.mkv
 *.wmv
-# Descomenta si no quieres subir imágenes:
-# *.jpg
-# *.jpeg
-# *.png
-# *.gif
 
 # =========================
 # Otros

@@ -1,11 +1,15 @@
+import os
 import mysql.connector
 from mysql.connector import Error
+from dotenv import load_dotenv
+
+load_dotenv(os.path.join(os.path.dirname(os.path.dirname(__file__)), '.env'))
 
 DB_CONFIG = {
-    "host": "localhost",
-    "user": "root",          
-    "password": "ivhs210",         
-    "database": "opticstream"
+    "host": os.getenv("DB_HOST", "localhost"),
+    "user": os.getenv("DB_USER"),
+    "password": os.getenv("DB_PASSWORD"),
+    "database": os.getenv("DB_NAME", "opticstream")
 }
 
 def conectar():
